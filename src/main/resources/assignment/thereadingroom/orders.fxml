@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="794.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.UserDashboard">
+   <children>
+      <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="85.0" prefWidth="1177.0" spacing="16.0" style="-fx-background-color: #2166CD;">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back">
+               <HBox.margin>
+                  <Insets left="16.0" />
+               </HBox.margin>
+            </Button>
+            <Label prefHeight="38.0" prefWidth="481.0" style="-fx-background-color: &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import javafx.scene.control.Label?&gt;&lt;?import javafx.scene.text.Font?&gt;&lt;Label layoutX=&quot;14.0&quot; layoutY=&quot;167.0&quot; text=&quot;Join&quot; textFill=&quot;#0096ff&quot; xmlns=&quot;http://javafx.com/javafx/23&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot;&gt;   &lt;font&gt;      &lt;Font name=&quot;Arial Black&quot; size=&quot;33.0&quot; /&gt;   &lt;/font&gt;&lt;/Label&gt;;" text="Your Orders" textFill="WHITE">
+               <padding>
+                  <Insets bottom="8.0" left="16.0" right="8.0" top="8.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="19.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="584.0" spacing="16.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #CCC;" text="Export" textFill="#323232" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="16.0" right="16.0" />
+               </padding>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets left="1624.0" />
+         </opaqueInsets>
+      </HBox>
+      <TableView layoutX="14.0" layoutY="100.0" prefHeight="675.0" prefWidth="706.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <TableView layoutX="733.0" layoutY="101.0" prefHeight="675.0" prefWidth="430.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
