@@ -83,4 +83,20 @@ public class BookDaoImpl implements BookDao {
             return statement.executeUpdate() > 0;
         }
     }
+
+    @Override
+    public boolean isBookAvailable(String title, int quantity) throws SQLException {
+        String sql = "SELECT n_physical_copies FROM " + TABLE_NAME + " WHERE title=?";
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, title);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    int available_copies = resultSet.getInt("n_physical_copies");
+                    return available_copies >= quantity;
+                }
+            }
+        }
+        return false;
+    }
 }

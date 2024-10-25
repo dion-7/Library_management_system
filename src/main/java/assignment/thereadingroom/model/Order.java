@@ -1,16 +1,21 @@
 package assignment.thereadingroom.model;
 
 public class Order {
-    private String orderId;
+    private String id;
     private String username;
     private String createdAt;
     private double totalPrice;
 
     public Order() {}
-    public Order(int orderId, String username, String createdAt, double totalPrice) {}
+    public Order(String orderId, String username, String createdAt, double totalPrice) {
+        setId(orderId);
+        setUsername(username);
+        setCreatedAt(createdAt);
+        setTotalPrice(totalPrice);
+    }
 
-    public String getOrderId() {
-        return orderId;
+    public String getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -33,8 +38,8 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setId(String orderId) {
+        this.id = orderId;
     }
 
     public void setTotalPrice(double totalPrice) {
