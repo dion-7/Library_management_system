@@ -10,3 +10,4 @@ public interface UserDao {
     User createUser(String username, String password, String firstName, String lastName) throws SQLException;
     boolean updateUser(String username, String password, String firstName, String lastName) throws SQLException;
 }
+

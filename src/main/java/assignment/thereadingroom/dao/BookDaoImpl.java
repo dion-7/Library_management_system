@@ -3,6 +3,8 @@ package assignment.thereadingroom.dao;
 import assignment.thereadingroom.model.Book;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     private final String TABLE_NAME = "books";
@@ -46,6 +48,52 @@ public class BookDaoImpl implements BookDao {
             }
         }
     }
+
+    @Override
+    public List<Book> getAllBooks() throws SQLException {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM " + TABLE_NAME;
+        try (Connection connection = Database.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Book book = new Book();
+                    book.setTitle(resultSet.getString("title"));
+                    book.setAuthors(resultSet.getString("authors"));
+                    book.setNPhysicalCopies(resultSet.getInt("n_physical_copies"));
+                    book.setPrice(resultSet.getFloat("price"));
+                    book.setNSoldCopies(resultSet.getInt("n_sold_copies"));
+                    books.add(book);
+                }
+            }
+        }
+        return books;
+    }
+
+    @Override
+    public List<Book> getMostSoldBooks(int count) throws SQLException {
+        String sql = "SELECT * FROM books ORDER BY n_sold_copies DESC LIMIT ?";
+        List<Book> mostSoldBooks = new ArrayList<>();
+
+        try (Connection connection = Database.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, count);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book();
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthors(rs.getString("authors"));
+                    book.setNPhysicalCopies(rs.getInt("n_physical_copies"));
+                    book.setPrice(rs.getFloat("price"));
+                    book.setNSoldCopies(rs.getInt("n_sold_copies"));
+                    mostSoldBooks.add(book);
+                }
+            }
+        }
+        return mostSoldBooks;
+    }
+
 
     @Override
     public Book createBook(Book book) throws SQLException {
