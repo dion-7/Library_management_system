@@ -47,6 +47,9 @@ public class Cart {
     // =======================
     // Cart management methods
     // =======================
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
 
     public void addBook(Book book) {
         _addBook(book, 1);
@@ -62,11 +65,16 @@ public class Cart {
 
     public void updateBookQuantity(Book book, int quantity) {
         Optional<CartItem> existingItem = findCartItemByBook(book);
-        if(quantity <= 0){
-            removeBook(book);
-        }else {
-            existingItem.get().setQuantity(quantity);
+        if(existingItem.isPresent()) {
+            if (quantity <= 0) {
+                removeBook(book);
+            } else {
+                existingItem.get().setQuantity(quantity);
+            }
+        } else {
+            addBook(book, quantity);
         }
+
     }
 
     public List<CartItem> getItems() {

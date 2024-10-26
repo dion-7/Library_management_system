@@ -14,6 +14,8 @@ public interface BookDao {
 
     List<Book> getMostSoldBooks(int count) throws SQLException;
 
+    List<Book> getMostSoldBooks() throws SQLException;
+
     Book createBook(Book book) throws SQLException;
 
     boolean updateBook(Book book) throws SQLException;

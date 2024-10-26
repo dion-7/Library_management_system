@@ -1,47 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="592.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.Checkout">
-   <children>
-      <AnchorPane prefHeight="61.0" prefWidth="471.0" style="-fx-background-color: #2166CD;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.controller.CheckoutController">
+   <top>
+      <HBox prefHeight="62.0" prefWidth="936.0" style="-fx-background-color: #BAF;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="194.0" layoutY="20.0" text="Checkout" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="91.0" prefWidth="743.0" text="Checkout" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="91.0" prefWidth="342.0" spacing="16.0" style="-fx-alignment: center-right;">
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonAction" prefHeight="34.0" prefWidth="90.0" text="Back" />
+               </children>
+               <padding>
+                  <Insets left="16.0" right="16.0" />
+               </padding>
+            </HBox>
          </children>
-      </AnchorPane>
-      <TextField layoutX="46.0" layoutY="256.0" prefHeight="31.0" prefWidth="371.0" />
-      <Label layoutX="46.0" layoutY="112.0" text="Total" textFill="#4d4d4d">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="106.0" layoutY="112.0" text="0.0 AUD" textFill="#4d4d4d">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="46.0" layoutY="227.0" text="Card Number" />
-      <Label layoutX="46.0" layoutY="176.0" text="Payment Method" textFill="#6f6f6f">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="46.0" layoutY="304.0" text="Expiry Date" />
-      <DatePicker layoutX="46.0" layoutY="335.0" prefHeight="31.0" prefWidth="112.0" />
-      <Label layoutX="202.0" layoutY="304.0" text="CVV" />
-      <TextField layoutX="202.0" layoutY="335.0" prefHeight="31.0" prefWidth="112.0" />
-      <Button layoutX="50.0" layoutY="397.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="371.0" style="-fx-background-color: #2166CD;" text="Pay" textFill="WHITE" />
-      <Label layoutX="50.0" layoutY="500.0" prefHeight="61.0" prefWidth="371.0" text="Success/ Failure Message" textAlignment="CENTER" />
-      <Button layoutX="50.0" layoutY="438.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="371.0" text="Cancel" textFill="#727070" />
-   </children>
-</AnchorPane>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="568.0" spacing="8.0" />
+            <AnchorPane prefHeight="444.0" prefWidth="792.0">
+               <children>
+                  <TextField fx:id="cardNumberInput" layoutX="292.0" layoutY="133.0" prefHeight="41.0" prefWidth="352.0" promptText="Card Number" />
+                  <Label layoutX="291.0" layoutY="106.0" text="Card Number" />
+                  <Button fx:id="placeOrderButton" layoutX="292.0" layoutY="311.0" mnemonicParsing="false" onAction="#onPlaceOrderButtonAction" prefHeight="42.0" prefWidth="354.0" style="-fx-background-color: #B9E;" text="Place Order">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="292.0" layoutY="200.0" text="Expires on" />
+                  <TextField fx:id="expiresOnInput" layoutX="292.0" layoutY="224.0" prefHeight="41.0" prefWidth="172.0" promptText="MM/YY" />
+                  <TextField fx:id="cvvInput" layoutX="472.0" layoutY="224.0" prefHeight="41.0" prefWidth="174.0" promptText="Last Name" />
+                  <Label fx:id="errorLabel" layoutX="291.0" layoutY="282.0" prefHeight="17.0" prefWidth="355.0" textFill="RED" />
+                  <Label layoutX="473.0" layoutY="199.0" text="CVV" />
+                  <Label layoutX="292.0" layoutY="43.0" text="Total">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalAmountLabel" layoutX="547.0" layoutY="41.0" text="0.0 AUD">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="successLabel" layoutX="291.0" layoutY="373.0" prefHeight="17.0" prefWidth="355.0" textFill="#34f854" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

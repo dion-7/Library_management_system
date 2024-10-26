@@ -4,10 +4,12 @@ public class CartItem {
     private int quantity;
     private float price;
     private Book book;
+    private String title;
 
     private void updatePrice() {
         if(this.book != null) {
             this.price = this.quantity * this.book.getPrice();
+            this.title = this.book.getTitle();
         }
         else {
             this.price = 0;
@@ -19,6 +21,7 @@ public class CartItem {
     public CartItem(Book book, int quantity)  {
         setBook(book);
         setQuantity(quantity);
+        this.title = book.getTitle();
     }
 
     // Getters
@@ -34,6 +37,9 @@ public class CartItem {
         return book;
     }
 
+    public String getTitle() {
+        return title;
+    }
     // Setters
 
     public void setQuantity(int quantity) {
@@ -53,5 +59,6 @@ public class CartItem {
             throw new IllegalArgumentException("Book cannot be null");
         }
         this.book = book;
+        this.title = this.book.getTitle();
     }
 }

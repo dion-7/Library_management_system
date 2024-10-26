@@ -94,6 +94,29 @@ public class BookDaoImpl implements BookDao {
         return mostSoldBooks;
     }
 
+    @Override
+    public List<Book> getMostSoldBooks() throws SQLException {
+        String sql = "SELECT * FROM books ORDER BY n_sold_copies DESC";
+        List<Book> mostSoldBooks = new ArrayList<>();
+
+        try (Connection connection = Database.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book();
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthors(rs.getString("authors"));
+                    book.setNPhysicalCopies(rs.getInt("n_physical_copies"));
+                    book.setPrice(rs.getFloat("price"));
+                    book.setNSoldCopies(rs.getInt("n_sold_copies"));
+                    mostSoldBooks.add(book);
+                }
+            }
+        }
+        return mostSoldBooks;
+    }
+
 
     @Override
     public Book createBook(Book book) throws SQLException {
