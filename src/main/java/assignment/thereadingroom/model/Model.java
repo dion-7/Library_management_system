@@ -5,21 +5,25 @@ import java.sql.SQLException;
 import assignment.thereadingroom.dao.*;
 
 public class Model {
+    private static Model instance;
     private UserDao userDao;
     private User currentUser;
-    private Cart cart;
     private BookDao bookDao;
     private OrderDao orderDao;
     private OrderitemDao orderitemDao;
 
-    public Model() {
-        cart = Cart.getCart();
-
+    private Model() {
         userDao = new UserDaoImpl();
         bookDao = new BookDaoImpl();
         orderDao = new OrderDaoImpl();
         orderitemDao = new OrderItemDaoImpl();
+    }
 
+    public static Model getInstance() {
+        if (instance == null){
+            instance = new Model();
+        }
+        return instance;
     }
 
     public void setup() throws SQLException {
@@ -28,6 +32,7 @@ public class Model {
         orderDao.setup();
         orderitemDao.setup();
     }
+
     public UserDao getUserDao() {
         return userDao;
     }
@@ -41,7 +46,7 @@ public class Model {
     }
 
     public Cart getCart() {
-        return cart;
+        return Cart.getCart();
     }
 
     public BookDao getBookDao() {
