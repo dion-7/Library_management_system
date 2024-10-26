@@ -9,6 +9,10 @@ module assignment.thereadingroom {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
-    opens assignment.thereadingroom to javafx.fxml;
     exports assignment.thereadingroom;
+    exports assignment.thereadingroom.controller;
+
+    opens assignment.thereadingroom to javafx.fxml;
+    opens assignment.thereadingroom.controller to javafx.fxml;
+
 }

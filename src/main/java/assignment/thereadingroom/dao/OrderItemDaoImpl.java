@@ -17,7 +17,7 @@ public class OrderItemDaoImpl implements OrderitemDao {
                 "book_title VARCHAR(255), " +
                 "quantity INT, " +
                 "price DOUBLE)";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(sql);
         }
@@ -26,7 +26,7 @@ public class OrderItemDaoImpl implements OrderitemDao {
     @Override
     public OrderItem getOrderItemById(String id) throws SQLException {
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -48,7 +48,7 @@ public class OrderItemDaoImpl implements OrderitemDao {
     public List<OrderItem> getOrderItemsByOrderId(String orderId) throws SQLException {
         List<OrderItem> orderItems = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE order_id = ?";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, orderId);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -70,7 +70,7 @@ public class OrderItemDaoImpl implements OrderitemDao {
     public List<OrderItem> getOrderItemsByOrderIds(String[] orderIds) throws SQLException {
         List<OrderItem> orderItems = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE orderId IN (" + String.join(",", orderIds) + ")";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {

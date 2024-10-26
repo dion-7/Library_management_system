@@ -1,31 +1,38 @@
 package assignment.thereadingroom.dao;
 
+import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static Connection instance = null;
-    private static final String URL = "jdbc:sqlite:identifier.sqlite";
+    private static Database instance = null;
+    private static final String URL = "jdbc:sqlite:mydb.db";
 
     private Database(){}
 
     // Get the singleton instance.
-    public static Connection getConnection(){
+    public static synchronized Database getInstance(){
         if (instance == null) {
-            try {
-                instance = DriverManager.getConnection(URL);
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
+           instance = new Database();
         }
         return instance;
     }
 
-    public static void closeConnection(){
-        if (instance != null) {
+    public Connection getConnection() throws SQLException{
+        try {
+            return DriverManager.getConnection(URL);
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public void closeConnection(Connection connection){
+        if (connection != null) {
             try{
-                instance.close();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

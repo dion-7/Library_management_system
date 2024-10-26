@@ -19,8 +19,8 @@ public class User {
     public boolean isAdmin(){
         return this.username.equals("admin")
                 && this.password.equals("reading_admin")
-                && this.firstName.equals("admin")
-                && this.lastName.equals("admin");
+                && this.firstName.equals("Admin")
+                && this.lastName.equals("Admin");
     }
 
     public String getUsername() {

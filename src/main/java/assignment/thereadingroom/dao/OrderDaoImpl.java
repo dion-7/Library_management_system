@@ -17,7 +17,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void setup() throws SQLException {
-        try(Connection connection = Database.getConnection();
+        try(Connection connection = Database.getInstance().getConnection();
             Statement statement = connection.createStatement()) {
             String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ("
                     + "id TEXT PRIMARY KEY,"
@@ -32,7 +32,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getOrdersByUsername(String username) throws SQLException {
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE username = ?";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, username);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -52,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order getOrder(String id) throws SQLException {
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
-        try (Connection connection = Database.getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = Database.getInstance().getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -71,7 +71,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order createOrder(OrderCreateDto orderCreateDto, List<OrderItemCreateDto> orderItemCreateDtoList) throws SQLException {
         String orderSql = "INSERT INTO " + TABLE_NAME + " (id, username, created_at, total_amount) VALUES (?, ?, ?, ?)";
-        try (Connection connection = Database.getConnection();){
+        try (Connection connection = Database.getInstance().getConnection();){
             connection.setAutoCommit(false);
             try (PreparedStatement orderStatement = connection.prepareStatement(orderSql)) {
                 orderStatement.setString(1, orderCreateDto.getId());

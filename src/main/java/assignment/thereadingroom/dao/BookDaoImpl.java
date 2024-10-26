@@ -13,7 +13,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void setup() throws SQLException {
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              Statement statement = connection.createStatement()){
             String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ("
                     + "title VARCHAR(255) NOT NULL,"
@@ -29,7 +29,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book getBook(String title) throws SQLException {
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE title=?";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, title);
 
@@ -53,7 +53,7 @@ public class BookDaoImpl implements BookDao {
     public List<Book> getAllBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLE_NAME;
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -75,7 +75,7 @@ public class BookDaoImpl implements BookDao {
         String sql = "SELECT * FROM books ORDER BY n_sold_copies DESC LIMIT ?";
         List<Book> mostSoldBooks = new ArrayList<>();
 
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, count);
 
@@ -100,7 +100,7 @@ public class BookDaoImpl implements BookDao {
         String sql = "INSERT INTO " + TABLE_NAME
                 + " (title, authors, n_physical_copies, price, n_sold_copies)"
                 + " VALUES (?, ?, ?, ?, ?)";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthors());
@@ -121,7 +121,7 @@ public class BookDaoImpl implements BookDao {
                 + "n_sold_copies = ?"
                 + " WHERE title = ?";
 
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, book.getAuthors());
             statement.setInt(2, book.getNPhysicalCopies());
@@ -135,7 +135,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public boolean isBookAvailable(String title, int quantity) throws SQLException {
         String sql = "SELECT n_physical_copies FROM " + TABLE_NAME + " WHERE title=?";
-        try (Connection connection = Database.getConnection();
+        try (Connection connection = Database.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, title);
             try (ResultSet resultSet = statement.executeQuery()) {
