@@ -33,7 +33,7 @@
             </HBox>
             <HBox prefHeight="91.0" prefWidth="342.0" spacing="16.0" style="-fx-alignment: center-right;">
                <children>
-                  <Button fx:id="orderHistoryButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Order History">
+                  <Button fx:id="orderHistoryButton" mnemonicParsing="false" onAction="#onOrderHistoryButtonAction" prefHeight="34.0" prefWidth="90.0" text="Order History">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

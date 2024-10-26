@@ -115,7 +115,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public boolean updateBook(Book book) throws SQLException {
         String sql = "UPDATE " + TABLE_NAME
-                + "SET authors = ?,"
+                + " SET authors = ?,"
                 + "n_physical_copies = ?,"
                 + "price = ?,"
                 + "n_sold_copies = ?"

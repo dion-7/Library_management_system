@@ -3,6 +3,7 @@ package assignment.thereadingroom.controller;
 import assignment.thereadingroom.model.Model;
 import assignment.thereadingroom.view.EditProfile;
 import assignment.thereadingroom.view.LoginScreen;
+import assignment.thereadingroom.view.OrderScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +19,9 @@ public class UserDashboardController {
 
     @FXML
     Button logoutButton;
+
+    @FXML
+    Button orderHistoryButton;
 
     @FXML
     public void initialize() {
@@ -38,4 +42,12 @@ public class UserDashboardController {
         LoginScreen loginScreen = new LoginScreen(stage);
         loginScreen.show();
     }
+
+    public void onOrderHistoryButtonAction(ActionEvent event) {
+        Stage stage = (Stage) orderHistoryButton.getScene().getWindow();
+        stage.hide();
+        OrderScreen orderScreen = new OrderScreen(stage);
+        orderScreen.show();
+    }
+
 }

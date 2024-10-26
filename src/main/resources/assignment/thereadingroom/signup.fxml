@@ -18,7 +18,7 @@
                   <Font name="Arial Bold" size="42.0" />
                </font>
             </Label>
-            <Label layoutX="80.0" layoutY="552.0" text="Copyright © 2024" />
+            <Label layoutX="80.0" layoutY="524.0" text="Copyright © 2024" />
             <Circle fill="#1f93ff00" layoutX="14.0" layoutY="106.0" radius="83.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </AnchorPane>

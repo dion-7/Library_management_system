@@ -3,6 +3,7 @@ package assignment.thereadingroom.dao;
 import assignment.thereadingroom.dto.OrderCreateDto;
 import assignment.thereadingroom.dto.OrderItemCreateDto;
 import assignment.thereadingroom.model.Order;
+import assignment.thereadingroom.model.OrderJoinedItem;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,6 +49,41 @@ public class OrderDaoImpl implements OrderDao {
         }
         return orders;
     }
+
+    @Override
+    public List<OrderJoinedItem> getOrderJoinedItemsByUsername(String username) throws SQLException {
+        List<OrderJoinedItem> orderJoinedItems = new ArrayList<>();
+        String sql = "SELECT o.id AS order_id, o.username, o.created_at, o.total_amount, "
+                + "oi.id AS item_id, oi.book_title, oi.quantity, oi.price "
+                + "FROM " + TABLE_NAME + " o "
+                + "JOIN " + ORDER_ITEM_TABLE_NAME + " oi ON o.id = oi.order_id "
+                + "WHERE o.username = ?"
+                + "ORDER BY o.created_at DESC";
+
+        try (Connection connection = Database.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, username);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    OrderJoinedItem joinedItem = new OrderJoinedItem(
+                            resultSet.getString("order_id"),
+                            resultSet.getString("username"),
+                            resultSet.getString("created_at"),
+                            resultSet.getDouble("total_amount"),
+                            resultSet.getString("item_id"),
+                            resultSet.getString("book_title"),
+                            resultSet.getInt("quantity"),
+                            resultSet.getDouble("price")
+                    );
+                    orderJoinedItems.add(joinedItem);
+                }
+            }
+        }
+        return orderJoinedItems;
+    }
+
+
 
     @Override
     public Order getOrder(String id) throws SQLException {

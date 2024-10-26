@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.controller.LoginController">
    <left>
       <AnchorPane prefHeight="600.0" prefWidth="272.0" style="-fx-background-color: #CAF;" BorderPane.alignment="CENTER">
@@ -19,7 +18,7 @@
                   <Font name="Arial Bold" size="42.0" />
                </font>
             </Label>
-            <Label layoutX="80.0" layoutY="552.0" text="Copyright © 2024" />
+            <Label layoutX="80.0" layoutY="519.0" text="Copyright © 2024" />
             <Circle fill="#1f93ff00" layoutX="14.0" layoutY="106.0" radius="83.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </AnchorPane>
