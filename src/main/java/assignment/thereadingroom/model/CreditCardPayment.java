@@ -20,7 +20,7 @@ public class CreditCardPayment extends PaymentMethod {
     public static boolean isValidExpiryDate(String expiryDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
         try{
-            LocalDate expiry = LocalDate.parse("01/" + expiryDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate expiry = LocalDate.parse("01/" + expiryDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
             return expiry.isAfter(LocalDate.now());
         } catch (DateTimeParseException e) {
             return false;
@@ -39,13 +39,13 @@ public class CreditCardPayment extends PaymentMethod {
         return isValidCardNumber(this.cardNumber);
     }
 
-    private boolean validateCardDetails(){
+    public boolean validateCardDetails(){
         return isValidCardNumber(this.cardNumber) && isValidCvv(this.cvv) && isValidExpiryDate(this.expiryDate);
     }
 
 
     @Override
-    public boolean pay(float amount) throws Exception {
+    public boolean pay(double amount) throws Exception {
         // For now return true if the card details are valid
         return validateCardDetails();
     }

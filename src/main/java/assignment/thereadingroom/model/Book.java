@@ -60,4 +60,12 @@ public class Book {
     public void setNSoldCopies(int nSoldCopies) {
         this.nSoldCopies = nSoldCopies;
     }
+
+//    public boolean equals(Book book) {
+//        return this.title.equals(book.title)
+//                && this.authors.equals(book.authors)
+//                && this.nPhysicalCopies == book.nPhysicalCopies
+//                && this.price == book.price
+//                && this.nSoldCopies == book.nSoldCopies;
+//    }
 }

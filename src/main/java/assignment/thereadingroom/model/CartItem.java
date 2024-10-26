@@ -40,6 +40,10 @@ public class CartItem {
         if (quantity < 0) {
             throw new IllegalArgumentException("Quantity cannot be negative");
         }
+        if (quantity > book.getNPhysicalCopies()){
+            throw new IllegalArgumentException("Quantity cannot be greater than the number of physical copies");
+        }
+
         this.quantity = quantity;
         this.updatePrice();
     }

@@ -17,6 +17,10 @@ public class Cart {
     }
 
     private void _addBook(Book book, int quantity) {
+        if(quantity < 0) {
+            throw new IllegalArgumentException("Quantity must be positive");
+        }
+
         Optional<CartItem> existingItem = findCartItemByBook(book);
         if(existingItem.isPresent()) {
             // If book is already in the cart, update the quantity
@@ -58,7 +62,11 @@ public class Cart {
 
     public void updateBookQuantity(Book book, int quantity) {
         Optional<CartItem> existingItem = findCartItemByBook(book);
-        existingItem.ifPresent(cartItem -> cartItem.setQuantity(quantity));
+        if(quantity <= 0){
+            removeBook(book);
+        }else {
+            existingItem.get().setQuantity(quantity);
+        }
     }
 
     public List<CartItem> getItems() {
