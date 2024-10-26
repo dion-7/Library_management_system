@@ -24,6 +24,12 @@ public class UserDaoImpl implements UserDao {
                     + "last_name VARCHAR(10) NOT NULL,"
                     + "PRIMARY KEY (username))";
             stmt.executeUpdate(sql);
+
+            // Insert the admin user if it doesn't already exist
+            String insertAdminSql = "INSERT INTO " + TABLE_NAME + " (username, password, first_name, last_name) "
+                    + "SELECT 'admin', 'reading_admin', 'Admin', 'Admin' "
+                    + "WHERE NOT EXISTS (SELECT 1 FROM " + TABLE_NAME + " WHERE username = 'admin')";
+            stmt.executeUpdate(insertAdminSql);
         }
     }
 
