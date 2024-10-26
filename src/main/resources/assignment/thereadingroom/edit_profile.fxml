@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="assignment.thereadingroom.EditProfile"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.controller.EditProfileController">
+   <top>
+      <HBox prefHeight="62.0" prefWidth="936.0" style="-fx-background-color: #BAF;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="91.0" prefWidth="743.0" text="Edit Profile" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="91.0" prefWidth="342.0" spacing="16.0" style="-fx-alignment: center-right;">
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonAction" prefHeight="34.0" prefWidth="90.0" text="Back" />
+               </children>
+               <padding>
+                  <Insets left="16.0" right="16.0" />
+               </padding>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="568.0" spacing="8.0" />
+            <AnchorPane prefHeight="444.0" prefWidth="792.0">
+               <children>
+                  <TextField fx:id="usernameInput" editable="false" layoutX="292.0" layoutY="79.0" prefHeight="41.0" prefWidth="352.0" promptText="Username" />
+                  <PasswordField fx:id="passwordInput" layoutX="292.0" layoutY="161.0" prefHeight="41.0" prefWidth="352.0" promptText="Password" />
+                  <Label layoutX="291.0" layoutY="52.0" text="Username" />
+                  <Label layoutX="291.0" layoutY="136.0" text="Password" />
+                  <Button fx:id="updateButton" layoutX="292.0" layoutY="324.0" mnemonicParsing="false" onAction="#onUpdateButtonAction" prefHeight="42.0" prefWidth="354.0" style="-fx-background-color: #B9E;" text="Update">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="292.0" layoutY="219.0" text="Full Name" />
+                  <TextField fx:id="firstNameInput" layoutX="292.0" layoutY="243.0" prefHeight="41.0" prefWidth="172.0" promptText="First Name" />
+                  <TextField fx:id="lastNameInput" layoutX="472.0" layoutY="243.0" prefHeight="41.0" prefWidth="174.0" promptText="Last Name" />
+                  <Label fx:id="errorLabel" layoutX="292.0" layoutY="297.0" prefHeight="17.0" prefWidth="355.0" textFill="RED" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -78,6 +78,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, password);
             stmt.setString(2, firstName);
             stmt.setString(3, lastName);
+            stmt.setString(4, username);
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;

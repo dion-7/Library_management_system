@@ -15,6 +15,8 @@ public class LoginScreen {
 
     public LoginScreen(Stage stage) {
         this.stage = stage;
+        this.stage.setWidth(800);
+        this.stage.setHeight(600);
         initialize();
     }
 

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment.thereadingroom.controller.UserDashboardController">
    <top>
       <HBox prefHeight="62.0" prefWidth="936.0" style="-fx-background-color: #BAF;" BorderPane.alignment="CENTER">
          <children>
@@ -38,8 +38,8 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="editProfileButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Edit Profile" />
-                  <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Logout" />
+                  <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#onEditProfileButtonAction" prefHeight="34.0" prefWidth="90.0" text="Edit Profile" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonAction" prefHeight="34.0" prefWidth="90.0" text="Logout" />
                </children>
                <padding>
                   <Insets left="16.0" right="16.0" />
